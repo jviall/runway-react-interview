@@ -7,7 +7,7 @@ const App: React.FC = () => {
   return (
     <ChakraProvider resetCSS>
       <Heading marginBottom="2rem">Spreadsheet</Heading>
-      <Spreadsheet />
+      <Spreadsheet initColumns={6} initRows={11}/>
     </ChakraProvider>
   );
 };

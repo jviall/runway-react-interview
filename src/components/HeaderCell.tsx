@@ -1,37 +1,27 @@
 import { Box, Input } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
-import formatAsCurrency from 'util/formatAsCurrency';
 
 interface Props {
   value: string;
   onChange: (newValue: string) => void;
   onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
+  disabled?: boolean;
 }
-function isNumber(value: string) {
-  return !isNaN(Number(value)) && Boolean(value);
-}
-const parse = (val) => val?.replace(/^\$,./, "");
 
-const Cell = React.forwardRef<HTMLInputElement, Props>(({ value, onChange, onKeyDown }, ref) => {
+const HeaderCell = React.forwardRef<HTMLInputElement, Props>(({ value, onChange, onKeyDown, disabled = false }, ref) => {
   const onChangeHandler: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (ev) => {
       onChange(ev.target.value);
     },
     [onChange],
   );
-  const handleBlur: React.FocusEventHandler<HTMLInputElement> = useCallback(() => {
-    if (isNumber(parse(value))) {
-      onChange(formatAsCurrency(parse(value)));
-    }
-  }, [onChange]);
 
   return (
     <Box onKeyDown={onKeyDown}>
         <Input
+          disabled={disabled}
           onChange={onChangeHandler}
-          onBlur={handleBlur}
           value={value}
-          type={isNumber(value) ? 'number' : 'text'}
           borderRadius={0}
           onKeyDown={onKeyDown}
           ref={ref}
@@ -40,4 +30,4 @@ const Cell = React.forwardRef<HTMLInputElement, Props>(({ value, onChange, onKey
   );
 });
 
-export default Cell;
+export default HeaderCell;

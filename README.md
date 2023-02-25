@@ -1,4 +1,10 @@
-# react-interview
+# Submission for James Viall
+
+## next steps
+* implement creation of new rows and columns either by button click or pressing 'Enter' at bottom-left cell
+* Allow for arrow-key navigation within the input value, in addition to arrow-key navigation across cells. (I currently interpret this as being a bug without this, as user can't easily correct values without using a mouse)
+
+# interview
 
 Welcome to the Runway frontend exercise! We really appreciate you taking time to show us your
 frontend development skills.
